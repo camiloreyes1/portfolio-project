@@ -4,6 +4,8 @@ const portfolioSchema = new Schema(
     {
         owner: {type: Schema.Types.ObjectId, ref: 'User'},
 
+        title: String,
+
         image: String,
 
         description: String
