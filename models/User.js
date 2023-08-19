@@ -11,10 +11,6 @@ const userSchema = (
         password: { type: String, 
             requires: true
         }
-    },
-
-    {
-        timeseries: true
     }
 )
 

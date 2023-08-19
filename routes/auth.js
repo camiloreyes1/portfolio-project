@@ -42,12 +42,12 @@ router.post("/signup", (req, res, next) => {
             const salt = bcrypt.genSaltSync(saltRounds);
             const hashedPassword = bcrypt.hashSync(password, salt);
 
-            User.create({ email, password: hashedPassword, fullName, username })
+            User.create({ email, password: hashedPassword, fullName })
                 .then((createdUser) => {
 
-                    const { email, _id, fullName, username } = createdUser;
+                    const { email, _id, fullName } = createdUser;
 
-                    const payload = { email, _id, fullName, username };
+                    const payload = { email, _id, fullName };
 
                     const authToken = jwt.sign(payload, process.env.SECRET, {
                         algorithm: "HS256",

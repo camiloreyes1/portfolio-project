@@ -37,4 +37,44 @@ router.post('/new-portfolio', isOwner, isAuthenticated, (req, res, next) => {
     })
 })
 
+router.post('/edit/:portfolioId' , isAuthenticated, isOwner, (req, res, next) => {
+
+    const { portfiolioId } = req.params
+    const { description, title, image } = req.body
+
+    
+    Portfolio.findByIdAndUpdate(
+
+        portfiolioId,
+        {
+            description,
+            title,
+            image
+        },
+        {
+            new: true
+        })
+        .then((updatedPorfolio) => {
+            res.json(updatedPorfolio)
+        })
+        .catch((err) => {
+            console.log(err)
+            next(err)
+        })
+})
+
+router.post('/delete/:portfolioId', isAuthenticated, isOwner, (req,res,next) => {
+
+    const { portfiolioId } = req.params
+
+    Portfolio.findByIdAndDelete(portfiolioId)
+    .then((deletedPortfolio) => {
+        res.json(deletedPortfolio)
+    })
+    .catch((err) => {
+        console.log(err)
+        next(err)
+    })
+})
+
 module.exports = router;

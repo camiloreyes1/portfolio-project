@@ -10,10 +10,6 @@ const portfolioSchema = new Schema(
 
         description: String
 
-    },
-
-    {
-        timeseries: true
     }
 )
 
